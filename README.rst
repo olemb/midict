@@ -56,11 +56,13 @@ There are two backend modules, ``sendmidi`` and ``rtmidi``. The
 ``rtmidi`` module currently has no code to receive messages.
 
 
-Goals
------
+MIDI Files
+----------
 
-* how far can we go without any new classes, just using standard
-  Python data types?
+I have no plans to add support for MIDI files since I don't use them,
+but I've added an example to https://github.com/olemb/rawmidifile/
+(``midict_midifile.py``) that sketches out one possible
+implementation.
 
 
 Open Questions
