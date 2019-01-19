@@ -16,7 +16,7 @@ class MidiMsg:
         args = ', '.join(f'{name}={value!r}' for name, value in items)
         return f'MidiMsg({self.msgtype!r}, {args})'
 
-    def __call__(self, **kwargs):
+    def copy(self, **kwargs):
         if 'msgtype' in kwargs:
             for msgtype in self.msgtype, kwargs['msgtype']:
                 if msgtype not in {'note_on', 'note_off'}:
@@ -27,10 +27,14 @@ class MidiMsg:
         args.update(kwargs)
         return MidiMsg(**args)
 
+    def __hash__(self):
+        # There's probably a faster way but this will work for now.
+        return hash(repr(self))
+
 
 if __name__ == '__main__':
     msg = MidiMsg('note_on', note=40)
-    msg2 = msg(note=60, ch=2)
+    msg2 = msg.copy(note=60, ch=2)
     print(msg)
     print(msg2)
 
