@@ -38,4 +38,4 @@ if __name__ == '__main__':
     print(msg)
     print(msg2)
 
-    print(msg(msgtype='note_off'))
+    print(msg.copy(msgtype='note_off'))
