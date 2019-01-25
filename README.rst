@@ -14,24 +14,33 @@ The basic API is just three functions:
 .. code-block:: python
 
     >>> import midict
-    >>> msg = midict.new('note_on', note=60)
+    >>> msg = midict.note_on(60)
     >>> msg
     {'type': 'note_on', 'note': 60, 'velocity': 64, 'ch': 1}
 
-    >>> midict.new(msg, ch=2)
-    {'type': 'note_on', 'note': 60, 'velocity': 64, 'ch': 2}    
+    >>> msg = midict.new('note_on', note=60)
+    {'type': 'note_on', 'note': 60, 'velocity': 64, 'ch': 1}
 
-    >>> midict.as_bytes({'type': 'pitch_bend', 'value': 8192, 'ch': 2})
-    (225, 0, 64)
-    >>> midict.from_bytes((225, 0, 64))
-    {'type': 'pitch_bend', 'value': 8192, 'ch': 2}
+    >>> midict.copy(msg, velocity=10, ch=2)
+    {'type': 'note_on', 'note': 60, 'velocity': 10, 'ch': 2}    
 
-``new()`` can be used to create a new message or copy and existing
-message and override values.
+    >>> midict.as_bytes(msg)
+    (144, 60, 64)
+    >>> midict.from_bytes((144, 60, 64))
+    {'type': 'note_on', 'note': 60, 'velocity': 64, 'ch': 1}
 
-``new()`` and ``from_bytes()`` do type and value checks and will
-always return a valid message (or otherwise raise the appropriate
-exceptions).
+``new()``, ``copy()`` and ``from_bytes()`` do type and value checks
+and will always return a valid message (or otherwise raise the
+appropriate exceptions).
+
+    >>> from midict.constructors import note_on, control_change
+    >>> note_on(60)
+    {'type': 'note_on', 'note': 60, 'velocity': 64, 'ch': 1}
+    >>> control_change(number=64, value=127, ch=1)
+    {'type': 'control_change', 'number': 64, 'value': 127, 'ch': 1}
+
+(The ``continue`` message is called ``continue_`` to avoid name
+collision with the Python keyword.)
 
 
 Ports

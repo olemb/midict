@@ -94,7 +94,7 @@ __all__ = [
     'midi_clock',
     'start',
     'stop',
-    'continue',
+    'continue_',
     'active_sensing',
     'reset',
 ]

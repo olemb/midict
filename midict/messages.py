@@ -29,7 +29,12 @@ _max_values = {
 }
 
 def check_msg(msg):
+    prototype = prototypes[msg['type']]
+
     for name, value in list(msg.items())[1:]:
+        if name not in prototype:
+            raise NameError(name)
+
         if name == 'data':
             if not isinstance(value, bytes):
                 raise TypeError('system exclusive data must be bytes')
@@ -49,21 +54,16 @@ def check_msg(msg):
     return msg
 
 
-def new(prototype, **kwargs):
-    if isinstance(prototype, str):
-        msg = prototypes[prototype].copy()
-    else:
-        msg = prototype.copy()
+def copy(prototype, **kwargs):
+    msg = prototype.copy()
 
     if 'data' in kwargs:
         kwargs['data'] = bytes(kwargs['data'])
 
-    for name in kwargs:
-        if name not in msg:
-            raise NameError(name)
-
     msg.update(kwargs)
 
-    check_msg(msg)
-        
-    return msg
+    return check_msg(msg)
+
+    
+def new(msgtype, **kwargs):
+    return copy(prototypes[msgtype], **kwargs)
