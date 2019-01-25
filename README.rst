@@ -16,15 +16,15 @@ The basic API is just three functions:
     >>> import midict
     >>> msg = midict.new('note_on', note=60)
     >>> msg
-    {'msgtype': 'note_on', 'note': 60, 'velocity': 64, 'ch': 1}
+    {'type': 'note_on', 'note': 60, 'velocity': 64, 'ch': 1}
 
     >>> midict.new(msg, ch=2)
-    {'msgtype': 'note_on', 'note': 60, 'velocity': 64, 'ch': 2}    
+    {'type': 'note_on', 'note': 60, 'velocity': 64, 'ch': 2}    
 
-    >>> midict.as_bytes({'msgtype': 'pitch_bend', 'value': 8192, 'ch': 2})
+    >>> midict.as_bytes({'type': 'pitch_bend', 'value': 8192, 'ch': 2})
     (225, 0, 64)
     >>> midict.from_bytes((225, 0, 64))
-    {'msgtype': 'pitch_bend', 'value': 8192, 'ch': 2}
+    {'type': 'pitch_bend', 'value': 8192, 'ch': 2}
 
 ``new()`` can be used to create a new message or copy and existing
 message and override values.
@@ -74,8 +74,12 @@ convention for all messages, so most of my questions are to do with naming.
 * use message and attribute names and values compatible with Mido or
   SendMIDI/ReceiveMIDI? (Currently the latter.) Examples of the same message::
 
-      {'msgtype': 'pitch_bend': 0, 'ch': 1}        # SendMIDI/ReceiveMIDI
+      {'type': 'pitch_bend': 0, 'ch': 1}        # SendMIDI/ReceiveMIDI
       {'type': 'channel': 0, 'pitchwheel': -8192}  # Mido
+
+* I had to rename ``time_code``'s ``type`` to ``frame_type`` to avoid
+  collision. Maybe there's a better name to use? Should it also have
+  ``frame_value`` like in Mido?
 
 * ``ch`` at the end of the message?
 
@@ -84,7 +88,7 @@ convention for all messages, so most of my questions are to do with naming.
 * use ``bytes`` or a list of ints for sysex data? (A list of ints is
   easier to convert to and from JSON.)
 
-* ``msgtype`` or something else?
+* ``type`` or something else?
 
 * ``new()`` should probably also have another name since it also
   copies messages.
