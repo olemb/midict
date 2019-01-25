@@ -57,10 +57,10 @@ def check_msg(msg):
 def copy(prototype, **kwargs):
     msg = prototype.copy()
 
-    if 'data' in kwargs:
-        kwargs['data'] = bytes(kwargs['data'])
-
     msg.update(kwargs)
+
+    if msg['type'] == 'system_exclusive':
+        msg['data'] = bytes(msg['data'])
 
     return check_msg(msg)
 
