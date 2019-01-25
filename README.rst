@@ -33,9 +33,6 @@ message and override values.
 always return a valid message (or otherwise raise the appropriate
 exceptions).
 
-The file ``midimsg.py`` has a simple example of a Mido style message
-class implemented on top of midict.
-
 
 Ports
 -----
