@@ -64,6 +64,6 @@ def copy(prototype, **kwargs):
 
     return check_msg(msg)
 
-    
+
 def new(msgtype, **kwargs):
     return copy(prototypes[msgtype], **kwargs)
