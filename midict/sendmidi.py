@@ -33,7 +33,7 @@ def from_line(line):
                 if 'channel' in line:
                     # Move channel to last position.
                     args = args[1:] + [args[0]]
-                names = list(prototypes[name].keys())[1:]
+                names = list(prototypes[scorename(name)].keys())[1:]
                 return new(scorename(name), **dict(zip(names, args)))
         else:
             raise ValueError(f'unknown message: {line.strip()!r}')
