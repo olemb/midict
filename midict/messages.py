@@ -46,6 +46,8 @@ def check_msg(msg):
             if not 0 <= value <= max_value:
                 raise ValueError(f'{name} must be in range 0..{max_value}')
 
+    return msg
+
 
 def new(prototype, **kwargs):
     if isinstance(prototype, str):
