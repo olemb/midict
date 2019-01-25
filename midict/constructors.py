@@ -71,11 +71,11 @@ def continue_():
 
 
 def active_sensing():
-    {'type': 'active_sensing'}
+    return {'type': 'active_sensing'}
 
 
 def reset():
-    {'type': 'reset'}
+    return {'type': 'reset'}
 
 
 __all__ = [
