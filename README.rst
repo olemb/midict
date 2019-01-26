@@ -33,7 +33,7 @@ The basic API is just three functions:
 and will always return a valid message (or otherwise raise the
 appropriate exceptions).
 
-The ``continue`` message has a trailing underscore to avoid collision
+The ``continue_()`` function has a trailing underscore to avoid collision
 with the Python keyword:
 
 .. code-block:: python
