@@ -33,16 +33,13 @@ The basic API is just three functions:
 and will always return a valid message (or otherwise raise the
 appropriate exceptions).
 
+The ``continue`` message has a trailing underscore to avoid collision
+with the Python keyword::
+
 .. code-block:: python
 
-    >>> from midict.constructors import note_on, control_change
-    >>> note_on(60)
-    {'type': 'note_on', 'note': 60, 'velocity': 64, 'ch': 1}
-    >>> control_change(number=64, value=127, ch=1)
-    {'type': 'control_change', 'number': 64, 'value': 127, 'ch': 1}
-
-(The ``continue`` message is called ``continue_`` to avoid name
-collision with the Python keyword.)
+    >>> midict.continue_()
+    {'type': 'continue'}
 
 
 Ports
