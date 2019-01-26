@@ -33,6 +33,8 @@ The basic API is just three functions:
 and will always return a valid message (or otherwise raise the
 appropriate exceptions).
 
+.. code-block:: python
+
     >>> from midict.constructors import note_on, control_change
     >>> note_on(60)
     {'type': 'note_on', 'note': 60, 'velocity': 64, 'ch': 1}
