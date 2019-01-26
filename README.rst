@@ -98,9 +98,6 @@ convention for all messages, so most of my questions are to do with naming.
 
 * ``type`` or something else?
 
-* ``new()`` should probably also have another name since it also
-  copies messages.
-
 
 Author
 ------
