@@ -3,9 +3,6 @@ midict - Experimental Python MIDI library using dictionaries
 
 Requires Python 3.7 (but should work with CPython 3.6 as well).
 
-This is a modified version of https://github.com/olemb/meep/ using
-plain old dictionaries instead of dataclasses.
-
 This is currently just an experiment to see how far one can go using
 built in types and pure functions.
 
