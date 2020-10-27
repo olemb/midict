@@ -6,20 +6,19 @@ Requires Python 3.7 (but should work with CPython 3.6 as well).
 This is currently just an experiment to see how far one can go using
 built in types and pure functions.
 
-The basic API is just three functions:
+The basic API is just two functions ``new()`` and ``copy()``:
 
 .. code-block:: python
 
     >>> import midict
-    >>> msg = midict.note_on(60)
-    >>> msg
-    {'type': 'note_on', 'note': 60, 'velocity': 64, 'ch': 1}
 
     >>> msg = midict.new('note_on', note=60)
     {'type': 'note_on', 'note': 60, 'velocity': 64, 'ch': 1}
 
     >>> midict.copy(msg, velocity=10, ch=2)
     {'type': 'note_on', 'note': 60, 'velocity': 10, 'ch': 2}    
+
+as well as functions for converting to and from bytes::
 
     >>> midict.as_bytes(msg)
     (144, 60, 64)
@@ -30,13 +29,6 @@ The basic API is just three functions:
 and will always return a valid message (or otherwise raise the
 appropriate exceptions).
 
-The ``continue_()`` function has a trailing underscore to avoid collision
-with the Python keyword:
-
-.. code-block:: python
-
-    >>> midict.continue_()
-    {'type': 'continue'}
 
 
 Ports
