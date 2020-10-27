@@ -37,7 +37,7 @@ def create_output(name):
     
 def _parse_syx_line(line):
     # Example: "system-exclusive hex 01 02 03 dec"
-    data []
+    data = []
     for word in line.split():
         if len(word) == 2:
             data.append(int(word, 16))
