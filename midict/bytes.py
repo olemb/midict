@@ -23,10 +23,6 @@ encoders = {
 }
 
 
-def as_bytes(msg):
-    return encoders[msg['type']](msg)
-
-
 decoders = {
     0x80: lambda msg: new('note_off', note=msg[1], velocity=msg[2], ch=(msg[0]&15)+1),
     0x90: lambda msg: new('note_on', note=msg[1], velocity=msg[2], ch=(msg[0]&15)+1),
@@ -47,6 +43,10 @@ decoders = {
     0xfe: lambda msg: new('active_sensing'),
     0xff: lambda msg: new('reset'),
 }
+
+
+def as_bytes(msg):
+    return encoders[msg['type']](msg)
 
 
 def from_bytes(midi_bytes):
