@@ -36,13 +36,11 @@ def _find_port(rt, name):
     try:
         return names.index(name)
     except ValueError:
-        pass
-
-    for index, fullname in enumerate(names):
-        if name.lower() in fullname.lower():
-            return index
-    else:
-        raise ValueError(f'unknown device {name!r}')
+        for index, fullname in enumerate(names):
+            if name.lower() in fullname.lower():
+                return index
+        else:
+            raise ValueError(f'unknown device {name!r}')
 
 
 class Input:
