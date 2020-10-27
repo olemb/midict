@@ -37,9 +37,11 @@ def create_output(name):
     
 def _parse_syx_line(line):
     # Example: "system-exclusive hex 01 02 03 dec"
-
-    data = [byte for byte in line.split() if len(byte) == 2]
-    return new('system_exclusive', data=bytes(int(byte, 16) for byte in data))
+    data []
+    for word in line.split():
+        if len(word) == 2:
+            data.append(int(word, 16))
+    return new('system_exclusive', data=data)
 
 
 def dashname(scorename):
