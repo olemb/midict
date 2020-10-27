@@ -1,3 +1,9 @@
+"""
+Backend for Geert Bevin's command line programs SendMIDI and ReceiveMIDI.
+
+https://github.com/gbevin/SendMIDI
+https://github.com/gbevin/ReceiveMIDI
+"""
 import os
 import re
 import subprocess

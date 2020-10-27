@@ -1,5 +1,7 @@
 """
-pip install python-rtmidi
+Backend for python-rtmidi.
+
+Install with: pip install python-rtmidi
 """
 import rtmidi
 from .bytes import as_bytes, from_bytes
