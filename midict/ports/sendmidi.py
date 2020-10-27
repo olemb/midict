@@ -35,7 +35,7 @@ def from_line(line):
     else:
         for name in _dashnames:
             if name in line:
-                args = [int(arg) for arg in re.findall('(\d+)', line)]
+                args = [int(arg) for arg in re.findall(r'(\d+)', line)]
                 if 'channel' in line:
                     # Move channel to last position.
                     args = args[1:] + [args[0]]
