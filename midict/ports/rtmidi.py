@@ -4,21 +4,7 @@ Port backend for python-rtmidi.
 Install with: pip install python-rtmidi
 """
 import rtmidi
-from .bytes import as_bytes, from_bytes
-
-
-def _find_port(rt, name):
-    names = rt.get_ports()
-    try:
-        return names.index(name)
-    except ValueError:
-        pass
-
-    for index, fullname in enumerate(names):
-        if name.lower() in fullname.lower():
-            return index
-    else:
-        raise ValueError(f'unknown device {name!r}')
+from ..bytes import as_bytes, from_bytes
 
 
 def list_inputs():
@@ -43,6 +29,20 @@ def create_input(name):
 
 def create_output(name):
     return Output(name, create=True)
+
+
+def _find_port(rt, name):
+    names = rt.get_ports()
+    try:
+        return names.index(name)
+    except ValueError:
+        pass
+
+    for index, fullname in enumerate(names):
+        if name.lower() in fullname.lower():
+            return index
+    else:
+        raise ValueError(f'unknown device {name!r}')
 
 
 class Input:

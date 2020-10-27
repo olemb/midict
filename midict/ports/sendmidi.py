@@ -7,15 +7,15 @@ https://github.com/gbevin/ReceiveMIDI
 import os
 import re
 import subprocess
-from .messages import prototypes, new
-from .bytes import as_bytes
+from ..messages import prototypes, new
+from ..bytes import as_bytes
 
 
 def _parse_syx_line(line):
     # Example: "system-exclusive hex 01 02 03 dec"
 
     data = [byte for byte in line.split() if len(byte) == 2]
-    return new('system-exclusive', data=bytes(int(byte, 16) for byte in data))
+    return new('system_exclusive', data=bytes(int(byte, 16) for byte in data))
 
 
 def dashname(scorename):
