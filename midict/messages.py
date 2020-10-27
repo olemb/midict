@@ -28,6 +28,22 @@ _max_values = {
     ('time_code', 'value'): 15,
 }
 
+
+def new(msg_type, **attributes):
+    """Return a new MIDI message."""
+    return copy(prototypes[msg_type], **attributes)
+
+
+def copy(prototype, **overrides):
+    """Return a copy of a MIDI message."""
+    msg = {**prototype, **overrides}
+
+    if msg['type'] == 'system_exclusive':
+        msg['data'] = bytes(msg['data'])
+
+    return check(msg)
+
+
 def check(msg):
     prototype = prototypes[msg['type']]
 
@@ -52,18 +68,3 @@ def check(msg):
                 raise ValueError(f'{name} must be in range 0..{max_value}')
 
     return msg
-
-
-def copy(prototype, **overrides):
-    """Return a copy of a MIDI message."""
-    msg = {**prototype, **overrides}
-
-    if msg['type'] == 'system_exclusive':
-        msg['data'] = bytes(msg['data'])
-
-    return check(msg)
-
-
-def new(msg_type, **attributes):
-    """Return a new MIDI message."""
-    return copy(prototypes[msg_type], **attributes)
