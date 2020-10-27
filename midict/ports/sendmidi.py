@@ -11,6 +11,30 @@ from ..messages import prototypes, new
 from ..bytes import as_bytes
 
 
+def list_inputs():
+    return [n.rstrip() for n in os.popen('receivemidi list').readlines()]
+
+
+def list_outputs():
+    return [n.rstrip() for n in os.popen('sendmidi list').readlines()]
+
+
+def open_input(name):
+    return Input(name)
+
+
+def open_output(name):
+    return Output(name)
+
+
+def create_input(name):
+    return Input(name, create=True)
+
+
+def create_output(name):
+    return Output(name, create=True)
+    
+    
 def _parse_syx_line(line):
     # Example: "system-exclusive hex 01 02 03 dec"
 
