@@ -1,5 +1,5 @@
 """
-Backend for python-rtmidi.
+Port backend for python-rtmidi.
 
 Install with: pip install python-rtmidi
 """
