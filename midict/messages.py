@@ -28,7 +28,7 @@ _max_values = {
     ('time_code', 'value'): 15,
 }
 
-def check_msg(msg):
+def check(msg):
     prototype = prototypes[msg['type']]
 
     for name, value in list(msg.items())[1:]:
@@ -54,16 +54,16 @@ def check_msg(msg):
     return msg
 
 
-def copy(prototype, **kwargs):
-    msg = prototype.copy()
-
-    msg.update(kwargs)
+def copy(prototype, **overrides):
+    """Return a copy of a MIDI message."""
+    msg = {**prototype, **overrides}
 
     if msg['type'] == 'system_exclusive':
         msg['data'] = bytes(msg['data'])
 
-    return check_msg(msg)
+    return check(msg)
 
 
-def new(msgtype, **kwargs):
-    return copy(prototypes[msgtype], **kwargs)
+def new(msg_type, **attributes):
+    """Return a new MIDI message."""
+    return copy(prototypes[msg_type], **attributes)
