@@ -13,6 +13,7 @@ The basic API is just two functions ``new()`` and ``copy()``:
     >>> import midict
 
     >>> msg = midict.new('note_on', note=60)
+    >>> msg
     {'type': 'note_on', 'note': 60, 'velocity': 64, 'ch': 1}
 
     >>> midict.copy(msg, velocity=10, ch=2)
