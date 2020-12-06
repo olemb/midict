@@ -33,8 +33,8 @@ def create_input(name):
 
 def create_output(name):
     return Output(name, create=True)
-    
-    
+
+
 def _parse_syx_line(line):
     # Example: "system-exclusive hex 01 02 03 dec"
     data = [int(word, 16) for word in line.split() if len(word) == 2]
@@ -67,7 +67,7 @@ def from_line(line):
         else:
             raise ValueError(f'unknown message: {line.strip()!r}')
 
-    
+
 def as_line(msg):
     hex_bytes = ' '.join(f'{byte}' for byte in as_bytes(msg))
     return f'raw {hex_bytes}'
