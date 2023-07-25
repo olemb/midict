@@ -28,7 +28,8 @@ as well as functions for converting to and from bytes::
 
 ``new()``, ``copy()`` and ``from_bytes()`` do type and value checks
 and will always return a valid message (or otherwise raise the
-appropriate exceptions).
+appropriate exceptions). ``as_bytes()`` assumes that the message
+is valid.
 
 
 
